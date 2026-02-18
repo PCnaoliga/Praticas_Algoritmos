@@ -17,11 +17,24 @@ int MaximoR(int v[], int n) {
 }
 
 int main() {
-  int c, n;
-  printf("Fale os valores\n");
-  while ((c = getchar()) != EOF) {
-    printf("Fale os valores\n");
-    scanf("%d", &n);
+  // 1. Definimos um vetor de teste
+  int tamanho;
+
+  printf("Fale o tamanho do vetor para identificarmos o maior numero\n");
+  scanf("%d", &tamanho);
+
+  int meuVetor[tamanho];
+
+  for (int i = tamanho; i >= 0; i--) {
+    printf("Fale o numero %d:\n", i);
+    scanf("%d", &meuVetor[i]);
   }
+
+  // 2. Chamamos a função e guardamos o resultado
+  int resultado = MaximoR(meuVetor, tamanho);
+
+  // 3. Mostramos o resultado (precisamos do printf da stdio.h)
+  printf("O maior elemento do vetor e: %d\n", resultado);
+
   return 0;
 }
