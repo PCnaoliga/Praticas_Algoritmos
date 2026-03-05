@@ -29,20 +29,24 @@ typedef struct {
 } REGISTRO;
 
 typedef struct {
-  REGISTRO A[MAX];
+  REGISTRO A[MAX + 1];
   int numElem;
 } LISTA;
+
+/*
+ * Gerenciamento de listas por meio de funções:
+ */
 
 void inicLista(LISTA *l) { // Funcao para inicializar a lista
   // Se usa um ponteiro para referenciar o REAL ELEMENTO
   l->numElem = 0; // Aqui era um ponto no lugar da seta
 }
 
-int tamanho(LISTA *l) {
-  return l->numElem; // Retorna o l no numero do ELEMENTO
+int tamanho(LISTA *l) { // Verificar o tamanho da lista
+  return l->numElem;    // Retorna o l no numero do ELEMENTO
 }
 
-void exibirList(LISTA *l) {
+void exibirList(LISTA *l) { // Exibir a lista por inteiro
   printf("Lista: \" ");
   // For para mostrar a lista a depender da quantidade de
   // elementos
@@ -52,7 +56,30 @@ void exibirList(LISTA *l) {
   printf("\"\n");
 }
 
-int buscaSequencial(LISTA *l, TIPOCHAVE ch) {
+// Essa busca usa o conceito de sentinela,
+// Um espaço onde vai ser armazenado o valor
+// escolhido para a busca, dessa forma se o
+// valor for só achado no sentinela vai cons-
+// tar como se não existise.
+int buscaSentinela(LISTA *l, TIPOCHAVE ch) {
+  int i = 0;
+  // Adiciona o valor da chave no sentinela
+  // que é o espaço mais a frente no numElem
+  l->A[l->numElem].chave = ch;
+  // Vai verificar a estrutura
+  while (l->A[i].chave != ch) {
+    i++;
+  }
+  // Caso o i passar por toda a estrutura
+  // e for para o sentinela vai retornar um
+  // valor de erro = -1
+  if (i == l->numElem) {
+    return -1;
+  }
+  return i;
+}
+
+int buscaSequencial(LISTA *l, TIPOCHAVE ch) { // Busca um elemento descrito
   int i = 0;
   // Enquanto o i for menor que o numero de elementos o for vai rodar
   while (i < l->numElem) {
@@ -67,6 +94,9 @@ int buscaSequencial(LISTA *l, TIPOCHAVE ch) {
   return -1;
 }
 
+bool inserirElementoListaOrd(LISTA *l, REGISTRO reg) {}
+
+// Adicionar um elemento na lista
 bool inserirElementoLista(LISTA *l, REGISTRO reg, int i) {
   int j;
 
@@ -93,6 +123,7 @@ bool inserirElementoLista(LISTA *l, REGISTRO reg, int i) {
   return true;
 }
 
+// Excluir um elemento da lista
 bool excluirElementoLista(TIPOCHAVE ch, LISTA *l) {
   int pos, j;
   // Vai usar a funcao de busca para achar o elemento que deseja apagar
@@ -112,6 +143,7 @@ bool excluirElementoLista(TIPOCHAVE ch, LISTA *l) {
   return true;
 }
 
+// Reiniciar os elementos da lista deixando todos como 0
 void reinicializarElem(LISTA *l) { l->numElem = 0; }
 
 int main() { return 0; }
