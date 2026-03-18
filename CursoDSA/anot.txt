@@ -78,5 +78,27 @@
 - Pratique inumeras vezes
 - Vai praticando de tempos em tempos
 
+##Arry dinamico VS Array estatico##
+- Array Estatico: 
+  > array = {2,3,4,5};
+  > É um array que não pode ser mudado, possui um tamanho fixo
+  > Memoria: Stack
+  > Não muda seu tamanho
+  > + Ganho de performace
+  > Menos operações
+  > Maior segurnaça
+  > Menor memory leaks
+  > Maior utilidade: Em performace critica
+  > Linguagens que usam: Rust,C
 
+- Array Dinamico:
+  > array = [];
+  > Tamanho variavel
+  > Memorial: heap
+  > Aumenta e diminui
+  > + Ganho de flexibilidade
+  > Redimencionar: O(n)
+  > Maior fragmentação e memory leaks
+  > Maior utilidade: Diversos sistemas em geral ou tamanho variavel
+  > Linguagens que usam: Python,Java
 
